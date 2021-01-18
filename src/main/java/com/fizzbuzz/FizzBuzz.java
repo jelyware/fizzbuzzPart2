@@ -1,7 +1,7 @@
 package com.fizzbuzz;
 
 /**
- * FizzBuzz (Step 1)
+ * FizzBuzz (Step 2)
  * Author: Jessica lynch
  */
 public class FizzBuzz
