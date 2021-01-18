@@ -36,7 +36,7 @@ public class FizzBuzzTest
         FizzBuzz fb = new FizzBuzz();
 
         System.setOut(new PrintStream(stdOutBuffer));   // Point to buffer
-        fb.runFizzBuzz(min, max);
+        fb.runFizzBuzz2(min, max);
         String data = stdOutBuffer.toString().replaceAll("\r", "").strip();
         System.setOut(stdOut);                          // Point to std out
         return (data);
