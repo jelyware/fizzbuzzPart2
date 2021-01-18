@@ -1,5 +1,5 @@
 # FizzBuzz_Part2
- ### FizzBuzz code challenge (Part #2) ###
+ ### FizzBuzz code challenge (Step #2) ###
  
  Developer: **Jessica Lynch**
  
