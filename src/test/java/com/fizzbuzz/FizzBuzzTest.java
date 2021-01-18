@@ -1,16 +1,15 @@
 package com.fizzbuzz;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
 /**
- * Unit test suite for FizzBuzz.
+ * Unit test suite for FizzBuzz (Step 2).
  */
 public class FizzBuzzTest
 {
@@ -34,12 +33,10 @@ public class FizzBuzzTest
         ByteArrayOutputStream stdOutBuffer = new ByteArrayOutputStream();
         PrintStream stdOut = System.out;
         FizzBuzz fb = new FizzBuzz();
-
-        System.setOut(new PrintStream(stdOutBuffer));   // Point to buffer
-        fb.runFizzBuzz2(min, max);
-        String data = stdOutBuffer.toString().replaceAll("\r", "").strip();
-        System.setOut(stdOut);                          // Point to std out
-        return (data);
+        System.setOut(new PrintStream(stdOutBuffer));   // sys point to buffer
+        fb.runFizzBuzz(min, max);
+        System.setOut(stdOut);                          // sys point to std out
+        return (stdOutBuffer.toString().replaceAll("\r", "").strip());
     }
 
     /**
@@ -179,11 +176,6 @@ public class FizzBuzzTest
         String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
         String [] respArr = response.split(" ");
         Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + "==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + "==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + "==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + "==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + "==> Received: " + actualCounts.numberCount);
         assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
         assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
         assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
@@ -201,11 +193,6 @@ public class FizzBuzzTest
         String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
         String [] respArr = response.split(" ");
         Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + "==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + "==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + "==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + "==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + "==> Received: " + actualCounts.numberCount);
         assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
         assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
         assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
@@ -216,7 +203,7 @@ public class FizzBuzzTest
     @Test
     public void test7_StartAndEndOutputFrom0To999990()
     {
-        System.out.println("TEST #7: Get Expected Start and End Output From 0 to 999990");
+        System.out.println("TEST #7: Verify Start and End Output From 0 to 999990");
         int minNum = 0;
         int maxNum = 999990; // A large multiple of both 3 and 5 and therefore 15
         String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
@@ -226,9 +213,7 @@ public class FizzBuzzTest
         String endOfStringReceived = respArr[arrLen-1];
         String startOfStringExpected = "fizzbuzz";
         String endOfStringExpected = "fizzbuzz";
-        System.out.println("  [DEBUG start of string] Received: " + startOfStringReceived);
         assertEquals(startOfStringReceived, startOfStringExpected);
-        System.out.println("  [DEBUG end of string] Received: " + endOfStringReceived);
         assertEquals(endOfStringReceived, endOfStringExpected);
     }
 
